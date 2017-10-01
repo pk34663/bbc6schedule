@@ -16,9 +16,10 @@ htmlfooter = """
 def index():
     strbuffer = ""
     strbuffer += htmlheader
-    for programme in schedule.parse_schedule(time.strftime("%Y/%m/%d")):
+    currentSchedule = schedule.bbc6schedule()
+    for programme in currentSchedule.parse_schedule(time.strftime("%Y/%m/%d")):
         strbuffer += "<h2>" + programme[1] + "</h2>"
-        pinfo = schedule.parse_programme(programme[0])
+        pinfo = currentSchedule.parse_programme(programme[0])
         if pinfo != None:
             tracks = pinfo.split('\n')
             for track in tracks:
