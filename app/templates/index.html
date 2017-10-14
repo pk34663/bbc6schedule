@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+    </head>
+ <!-- Latest compiled and minified CSS -->
+ <link rel="stylesheet"
+ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+ <!-- jQuery library -->
+ <script
+ src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+ <!-- Latest compiled JavaScript -->
+ <script
+ src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <body>
+        <div class="container">
+					<h1>Programme schedule {{programmes['date']}}</h1>
+					{% for programme in programmes['programmes'] %}
+					<h2>{{programme}}</h2>
+					{% for track in programmes['programmes'][programme]['tracks'] %}
+					<h3>{{track[0]}} - {{track[1]}}</h3>
+					{% endfor %}
+					{% endfor %}
+        </div>
+    </body>
+</html>

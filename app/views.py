@@ -1,3 +1,4 @@
+from flask import render_template
 from app import app
 import schedule
 import time
@@ -40,9 +41,10 @@ def index():
         currentSchedule.parse_programme(programme[0],programme[1])
     jsonstr = json.loads(currentSchedule.get_json())
 
-    for programme in jsonstr['programmes']:
-        strbuffer += "<h2>" + programme + "</h2>"
-        for track in jsonstr['programmes'][programme]['tracks']:
-            strbuffer += "<h3>%s, %s</h3>" % (track[0], track[1])
-    strbuffer += htmlfooter
-    return strbuffer
+    #for programme in jsonstr['programmes']:
+    #    strbuffer += "<h2>" + programme + "</h2>"
+    #    for track in jsonstr['programmes'][programme]['tracks']:
+    #        strbuffer += "<h3>%s, %s</h3>" % (track[0], track[1])
+    #strbuffer += htmlfooter
+    #return strbuffer
+    return render_template("index.html", programmes=jsonstr)
