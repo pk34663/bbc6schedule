@@ -1,5 +1,6 @@
 import urllib2
 import BeautifulSoup
+from multiprocessing.dummy import Pool as ThreadPool
 import pprint
 import json
 import sys
@@ -58,14 +59,22 @@ class bbc6schedule:
     def get_json(self):
         return json.dumps(self._schedule)
 
+    def worker_mp(self,inputs):
+        self.parse_programme(inputs[0], inputs[1])
+
 if __name__ == "__main__":
     if len(sys.argv) != 2:
         print "%s Usage: %s" % (sys.argv[0], "date <YYYY/MM/DD>")
         sys.exit(1)
 
     schedule = bbc6schedule(sys.argv[1]) 
-    for programme in schedule.parse_schedule():
-        schedule.parse_programme(programme[0],programme[1])
+    data = schedule.parse_schedule()
+    p = ThreadPool(len(data))
+    p.map(schedule.worker_mp, data)
+
+
+    #for programme in schedule.parse_schedule():
+    #    schedule.parse_programme(programme[0],programme[1])
     #for key in schedule._schedule['programmes']:
     #    print key
     #    for programme in schedule._schedule['programmes'][key]['tracks']:
