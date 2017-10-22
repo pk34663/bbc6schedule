@@ -72,14 +72,6 @@ if __name__ == "__main__":
     p = ThreadPool(len(data))
     p.map(schedule.worker_mp, data)
 
-
-    #for programme in schedule.parse_schedule():
-    #    schedule.parse_programme(programme[0],programme[1])
-    #for key in schedule._schedule['programmes']:
-    #    print key
-    #    for programme in schedule._schedule['programmes'][key]['tracks']:
-    #        print programme[0], programme[1]
-
     data = json.loads(schedule.get_json())
 
     for key in data['programmes']:
