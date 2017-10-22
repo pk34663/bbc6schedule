@@ -22,7 +22,6 @@ class bbc6schedule:
         resourcere = re.compile('^.*typeof=\"RadioEpisode\" resource=\"(?P<resource>http://[^\"]+)\".*?name\">(?P<show>[^<]+).*')
 
         url = self._baseurl + self._schedule['date']
-        print 'DEBUG:parse_schedule %s' % (url)
         html = self.get_html(url)
 
         soup = BeautifulSoup.BeautifulSoup(html)
